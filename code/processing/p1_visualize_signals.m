@@ -1,5 +1,9 @@
 % Visualize all signals in dataset. Includes minimal preprocessing of the
 % signals.
+%
+% David Romero-Bascones (dromero@mondragon.edu)
+% Biomedical Engineering Department, Mondragon Unibertsitatea, 2022
+
 close all;clc;clearvars;
 
 addpath(genpath('../utils'));
@@ -12,14 +16,13 @@ annot = readtable([in_dir,'annotations.csv']);
 
 % Basic data info
 [n_samp, n_s] = size(S);
-T = 1/100;  % Sampling period
+T = 1/100; 
 t = 0:T:T*(n_samp-1);
 
 % Plotting
-f = figure('Position',[0 0 1400 500]);
+f = figure('Position',[0 0 1400 500],'Visible','on');
 
 n=4; m=1;  % subplots
-
 for i_s=1:n_s
     s = S(:,i_s);
     s_type = annot.type{i_s};
