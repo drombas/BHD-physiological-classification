@@ -5,7 +5,7 @@ Biomedical Engineering Department, Mondragon Unibertsitatea, 2022
 """
 
 import numpy as np
-from scipy.signal import butter, lfilter, freqz
+from scipy.signal import butter, lfilter
 
 
 def crop_signal(t, s, t_start, t_end):
