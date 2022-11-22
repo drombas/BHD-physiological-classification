@@ -1,7 +1,6 @@
-"""Utilities used for signal processing, feature extraction.
+"""Functions used for signal preprocessing and feature extraction.
 
-David Romero-Bascones, dromero@mondragon.edu
-Biomedical Engineering Department, Mondragon Unibertsitatea, 2022
+David Romero-Bascones, @drombas
 """
 
 import numpy as np

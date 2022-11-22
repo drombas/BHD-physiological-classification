@@ -1,4 +1,4 @@
-""" Visualiztion functions used across the codebase.
+""" Visualization functions used across the codebase.
 
 David Romero-Bascones, dromero@mondragon.edu
 Biomedical Engineering Department, Mondragon Unibertsitatea, 2022
