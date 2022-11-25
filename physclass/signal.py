@@ -30,6 +30,15 @@ def butter_lowpass_filter(data, cutoff, fs, order=5):
     return y
 
 
+def compute_pwd(s, fs):
+    s = s - np.mean(s)
+    H = np.fft.fft(s)
+    H_abs = np.abs(H)
+    pwd = np.square(H_abs)
+    f = np.linspace(0, fs/2, len(pwd))
+    return f, pwd
+
+
 def compute_time_features(t, s, minima, maxima):
     """Compute time-domain features from a signal. These have been manually
     engineered for the especific problem."""

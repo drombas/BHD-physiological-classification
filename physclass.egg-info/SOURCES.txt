@@ -1,0 +1,9 @@
+README.md
+setup.py
+physclass/__init__.py
+physclass/signal.py
+physclass/visu.py
+physclass.egg-info/PKG-INFO
+physclass.egg-info/SOURCES.txt
+physclass.egg-info/dependency_links.txt
+physclass.egg-info/top_level.txt
