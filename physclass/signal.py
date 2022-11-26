@@ -24,19 +24,35 @@ def butter_lowpass(cutoff, fs, order=5):
 
 
 def butter_lowpass_filter(data, cutoff, fs, order=5):
-    """"Filter a signal using a Butterworth lowpass filter."""
+    """Filter a signal using a Butterworth lowpass filter."""
     b, a = butter_lowpass(cutoff, fs, order=order)
     y = lfilter(b, a, data)
     return y
 
 
-def compute_pwd(s, fs):
+def compute_spectrum(s, fs, right_only=True):
+    n = len(s)
+
     s = s - np.mean(s)
     H = np.fft.fft(s)
     H_abs = np.abs(H)
-    pwd = np.square(H_abs)
-    f = np.linspace(0, fs/2, len(pwd))
-    return f, pwd
+    H_abs = np.square(H_abs) ** 2
+    f = np.fft.fftfreq(n, d=1/fs)
+
+    if right_only:
+        n2 = np.ceil(n/2).astype('int')
+        f = f[:n2]
+        H_abs = H_abs[:n2]
+
+    return f, H_abs
+
+
+def compute_freq_features(s, fs):
+    f, H = compute_spectrum(s, fs)
+
+    f25 = f[np.argmin(np.abs(H - np.percentile(H, 25)))]
+    f75 = f[np.argmin(np.abs(H - np.percentile(H, 75)))]
+    return f25, f75
 
 
 def compute_time_features(t, s, minima, maxima):
