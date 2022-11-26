@@ -12,6 +12,16 @@ def crop_signal(t, s, t_start, t_end):
     return t[in_window], s[in_window]
 
 
+def normalize_signal(s, s_min=None, s_max=None):
+    if s_min is None:
+        s_min = np.min(s)
+    if s_max is None:
+        s_max = np.max(s)
+
+    s_norm = (s - s_min) / (s_max - s_min) - 0.5
+    return s_norm
+
+
 def butter_lowpass(cutoff, fs, order=5):
     """Butterworth low pass filter for smoothing.
     code from: https://stackoverflow.com/questions/25191620/...
@@ -23,10 +33,10 @@ def butter_lowpass(cutoff, fs, order=5):
     return b, a
 
 
-def butter_lowpass_filter(data, cutoff, fs, order=5):
+def butter_lowpass_filter(s, cutoff, fs, order=5):
     """Filter a signal using a Butterworth lowpass filter."""
     b, a = butter_lowpass(cutoff, fs, order=order)
-    y = lfilter(b, a, data)
+    y = lfilter(b, a, s)
     return y
 
 
